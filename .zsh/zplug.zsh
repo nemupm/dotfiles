@@ -1,4 +1,28 @@
 # install
+__zsh::zplug::install()
+{
+    git clone https://github.com/zplug/zplug $ZPLUG_HOME
+}
+
+__zsh::zplug::check()
+{
+    local _ZPLUG_HOME_DEFAULT="$HOME/.zplug"
+    local _ZPLUG_HOME_MACOS="/usr/local/opt/zplug"
+
+    if [ -z "$ZPLUG_HOME" ]; then
+        if [ -d $_ZPLUG_HOME_DEFAULT ]; then
+            export ZPLUG_HOME_DEFAULT="$_ZPLUG_HOME_DEFAULT"
+        elif [ -d $_ZPLUG_HOME_MACOS ]; then
+            export ZPLUG_HOME_MACOS="$_ZPLUG_HOME_MACOS"
+        else
+            export ZPLUG_HOME_DEFAULT="$_ZPLUG_HOME_DEFAULT"
+            __zsh::zplug::install
+        fi
+    elif [ ! -d $ZPLUG_HOME ]; then
+        __zsh::zplug::install
+    fi
+}
+
 if [ ! -d $ZPLUG_HOME ]; then
     if [ -z "$ZPLUG_HOME" ]; then
         export ZPLUG_HOME=$HOME/.zplug
@@ -11,7 +35,7 @@ elif [ -d /usr/local/opt/zplug ]; then
     # zplug home for mac-os
     export ZPLUG_HOME=/usr/local/opt/zplug
 else
-    printf '[ERROR] No zplug found.'
+    echo '[ERROR] No zplug found.'
     exit 1
 fi
 
