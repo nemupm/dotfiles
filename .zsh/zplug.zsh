@@ -11,11 +11,11 @@ __zsh::zplug::check()
 
     if [ -z "$ZPLUG_HOME" ]; then
         if [ -d $_ZPLUG_HOME_DEFAULT ]; then
-            export ZPLUG_HOME_DEFAULT="$_ZPLUG_HOME_DEFAULT"
+            export ZPLUG_HOME="$_ZPLUG_HOME_DEFAULT"
         elif [ -d $_ZPLUG_HOME_MACOS ]; then
-            export ZPLUG_HOME_MACOS="$_ZPLUG_HOME_MACOS"
+            export ZPLUG_HOME="$_ZPLUG_HOME_MACOS"
         else
-            export ZPLUG_HOME_DEFAULT="$_ZPLUG_HOME_DEFAULT"
+            export ZPLUG_HOME="$_ZPLUG_HOME_DEFAULT"
             __zsh::zplug::install
         fi
     elif [ ! -d $ZPLUG_HOME ]; then
