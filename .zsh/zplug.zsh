@@ -2,6 +2,7 @@
 __zsh::zplug::install()
 {
     git clone https://github.com/zplug/zplug $ZPLUG_HOME
+    chmod -R 755 $ZPLUG_HOME
 }
 
 __zsh::zplug::check()
