@@ -41,3 +41,12 @@ bindkey "^x^p" expand_path
 
 # md2conflu
 alias m2c="pbpaste |md2conflu |pbcopy"
+
+# programming-contest
+function programming-contest::jump(){
+    root=$(ghq root)/github.com/nemupm/programming-contest/codes
+    contest=$(ls $root| peco)
+    if [ -n "$contest" ]; then
+        cd "$root/$contest"
+    fi
+}
