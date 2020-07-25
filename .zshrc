@@ -1,5 +1,5 @@
 # tmux
-if [ $SHLVL = 1 ]; then
+if [ "$(tmux display-message -p '#S')" != '0' ]; then
   tmux attach || tmux
 fi
 
