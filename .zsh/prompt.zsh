@@ -1,4 +1,10 @@
 # prompt
+zinit ice svn silent
+zinit snippet PZT::modules/prompt
+# theme
+setopt promptsubst
+zinit snippet OMZT::gnzh
+
 autoload -Uz vcs_info
 zstyle ':vcs_info:*' formats '(%b)'
 zstyle ':vcs_info:*' actionformats '(%b|%a)'

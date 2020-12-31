@@ -49,8 +49,7 @@ zinit wait lucid light-mode for \
 zinit ice wait lucid from"gh-r" as"program"
 zinit light junegunn/fzf-bin
 # snippet
-zinit wait lucid is-snippet for \
+zinit is-snippet for \
       OMZL::git.zsh \
+      OMZP::git \
       PZT::modules/helper/init.zsh
-# Load theme file
-zinit light dracula/zsh
