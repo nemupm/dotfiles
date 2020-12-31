@@ -4,13 +4,13 @@ alias subl='reattach-to-user-namespace subl'
 # git
 function ghq::jump(){
     ghq_root=$(ghq root)
-    repo=$(ghq list | peco)
+    repo=$(ghq list | fzf)
     if [ -n "$repo" ]; then
         cd "$ghq_root/$repo"
     fi
 }
 function ghq::browse(){
-    repo_dir=$(ghq list | peco)
+    repo_dir=$(ghq list | fzf)
     if [ -z "$repo_dir" ]; then
         return 1;
     fi
@@ -20,13 +20,12 @@ function ghq::browse(){
 }
 alias g='ghq::jump'
 alias gh='ghq::browse'
-eval "$(hub alias -s)"
 
 # gitignore
 function gi() { curl -L -s https://www.gitignore.io/api/"$@" ;}
 
-# tmux
-alias t="tmux attach || tmux"
+# peco
+alias peco='fzf'
 
 # get paths quickly
 function expand_path() {
@@ -34,7 +33,7 @@ function expand_path() {
     parent_dir=$(ls -U -d "$(dirname $(pwd))"/* 2>/dev/null | head -n 100)
     ghq_dir=$(ghq list -p)
     ecd_dir=$(cat $ENHANCD_DIR/enhancd.log)
-    BUFFER=${LBUFFER}$(echo "${cur_dir}\n${parent_dir}\n${ghq_dir}\n${ecd_dir}"| peco)${RBUFFER}
+    BUFFER=${LBUFFER}$(echo "${cur_dir}\n${parent_dir}\n${ghq_dir}\n${ecd_dir}"| fzf)${RBUFFER}
 }
 zle -N expand_path
 bindkey "^x^p" expand_path
@@ -45,7 +44,7 @@ alias m2c="pbpaste |md2conflu |pbcopy"
 # programming-contest
 function programming-contest::jump(){
     root=$(ghq root)/github.com/nemupm/programming-contest/codes
-    contest=$(ls $root| peco)
+    contest=$(ls $root| fzf)
     if [ -n "$contest" ]; then
         cd "$root/$contest"
     fi

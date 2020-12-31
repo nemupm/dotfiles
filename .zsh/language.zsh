@@ -1,33 +1,46 @@
-# java
-export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
-
 # sdkman!
-print " Load sdkman!"
 export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+zinit ice wait lucid as"program" pick"$HOME/.sdkman/bin/sdk" id-as'sdkman' run-atpull \
+    atclone"wget https://get.sdkman.io/?rcupdate=false -O $HOME/.sdkman/scr.sh; bash $HOME/.sdkman/scr.sh" \
+    atpull"sdk selfupdate" \
+    atinit"source $HOME/.sdkman/bin/sdkman-init.sh"
+zinit light zdharma/null
 
 # nvm
-print " Load nvm"
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+if [ -s "$NVM_DIR/nvm.sh" ]; then
+  export NVM_DIR="$HOME/.nvm"
+  zinit ice wait lucid \
+      atclone"" \
+      atinit'source "$NVM_DIR/nvm.sh"'
+  zinit light zdharma/null
+fi
 
 # rbenv
-print " Load rbenv"
-export PATH="$HOME/.rbenv/bin:$PATH"
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+if which rbenv > /dev/null; then
+  export PATH="$HOME/.rbenv/bin:$PATH"
+  zinit ice wait lucid \
+      atclone"" \
+      atinit'eval "$(rbenv init -)"'
+  zinit light zdharma/null
+fi
 
 # pyenv
-print " Load pyenv"
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-
-# pyenv-virtualenv
-eval "$(pyenv virtualenv-init -)"
+zinit ice wait lucid atclone'$HOME/.pyenv/libexec/pyenv init - > zpyenv.zsh' \
+    atinit'eval "$(pyenv virtualenv-init -)"' atpull"%atclone" \
+    as'command' pick'bin/pyenv' src"zpyenv.zsh" nocompile'!'
+zinit light pyenv/pyenv
 
 # gvm
-print " Load gvm"
-[[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
+if [[ -s "$HOME/.gvm/scripts/gvm" ]]; then
+  export PATH="$HOME/.rbenv/bin:$PATH"
+  zinit ice wait lucid \
+      atclone"" \
+      atinit'source "$HOME/.gvm/scripts/gvm"'
+  zinit light zdharma/null
+fi
 
 # direnv
-eval "$(direnv hook zsh)"
+zinit ice wait lucid from"gh-r" as"program" mv"direnv* -> direnv"
+zinit light direnv/direnv
