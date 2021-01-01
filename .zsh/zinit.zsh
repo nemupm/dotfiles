@@ -31,23 +31,22 @@ source $ZINIT_HOME/zinit.zsh
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
+# plugins
 zinit wait lucid light-mode for \
+      b4b4r07/enhancd \
   atinit"zicompinit; zicdreplay" \
       zdharma/fast-syntax-highlighting \
   atload"_zsh_autosuggest_start" \
       zsh-users/zsh-autosuggestions \
   blockf atpull'zinit creinstall -q .' \
-      zsh-users/zsh-completions
-# zdharma/history-search-multi-word
+      zsh-users/zsh-completions \
+  from"gh-r" as"program" atinit"export FZF_DEFAULT_OPTS='--height 40% --layout=reverse'" \
+      junegunn/fzf-bin \
+# history search
 zstyle ":history-search-multi-word" page-size "30"
 zinit ice wait"1" lucid
 zinit load zdharma/history-search-multi-word
-# cd
-zinit wait lucid light-mode for \
-      b4b4r07/enhancd
-# fzf(peco)
-zinit ice wait lucid from"gh-r" as"program"
-zinit light junegunn/fzf-bin
+
 # snippet
 zinit is-snippet for \
       OMZL::git.zsh \
