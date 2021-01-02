@@ -41,7 +41,7 @@ zinit wait lucid light-mode for \
   blockf atpull'zinit creinstall -q .' \
       zsh-users/zsh-completions \
   from"gh-r" as"program" atinit"export FZF_DEFAULT_OPTS='--height 40% --layout=reverse'" \
-      junegunn/fzf-bin \
+      junegunn/fzf-bin
 # history search
 zstyle ":history-search-multi-word" page-size "30"
 zinit ice wait"1" lucid
@@ -52,3 +52,13 @@ zinit is-snippet for \
       OMZL::git.zsh \
       OMZP::git \
       PZT::modules/helper/init.zsh
+
+# kubernetes
+zinit wait lucid for \
+      OMZ::plugins/kubectl/kubectl.plugin.zsh
+zinit wait"1" lucid light-mode for \
+  from"gh-r" as"program" mv"*/cache_builder -> cache_builder" pick"cache_builder" \
+  atload"(pgrep cache_builder >/dev/null || nohup cache_builder </dev/null >/dev/null 2>&1 &)" \
+     @bonnefoa/kubectl-fzf \
+  atload"export KUBECTL_FZF_OPTIONS=(--height 100%); zicdreplay" \
+     @bonnefoa/kubectl-fzf
