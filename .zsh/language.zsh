@@ -1,3 +1,6 @@
+# java
+export JAVA_HOME=$(/usr/libexec/java_home)
+
 # sdkman!
 export SDKMAN_DIR="$HOME/.sdkman"
 zinit ice wait lucid as"program" pick"$HOME/.sdkman/bin/sdk" id-as'sdkman' run-atpull \
