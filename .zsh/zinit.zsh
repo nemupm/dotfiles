@@ -36,7 +36,11 @@ zinit wait lucid light-mode for \
       b4b4r07/enhancd \
   atinit"zicompinit; zicdreplay" \
       zdharma/fast-syntax-highlighting \
-  atload"_zsh_autosuggest_start" \
+  atload"_zsh_autosuggest_start;"\
+"export ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=(end-of-line vi-end-of-line vi-add-eol);"\
+"export ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS=(forward-char vi-forward-char "\
+"forward-word emacs-forward-word vi-forward-word vi-forward-word-end vi-forward-blank-word "\
+"vi-forward-blank-word-end vi-find-next-char vi-find-next-char-skip)" \
       zsh-users/zsh-autosuggestions \
   blockf atpull'zinit creinstall -q .' \
       zsh-users/zsh-completions \
