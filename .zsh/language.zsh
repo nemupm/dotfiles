@@ -10,8 +10,8 @@ zinit ice wait lucid as"program" pick"$HOME/.sdkman/bin/sdk" id-as'sdkman' run-a
 zinit light zdharma/null
 
 # nvm
+export NVM_DIR="$HOME/.nvm"
 if [ -s "$NVM_DIR/nvm.sh" ]; then
-  export NVM_DIR="$HOME/.nvm"
   zinit ice wait lucid \
       atclone"" \
       atinit'source "$NVM_DIR/nvm.sh"'
@@ -37,7 +37,6 @@ zinit light pyenv/pyenv
 
 # gvm
 if [[ -s "$HOME/.gvm/scripts/gvm" ]]; then
-  export PATH="$HOME/.rbenv/bin:$PATH"
   zinit ice wait lucid \
       atclone"" \
       atinit'source "$HOME/.gvm/scripts/gvm"'
