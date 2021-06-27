@@ -60,9 +60,10 @@ zinit is-snippet for \
 # kubernetes
 zinit wait lucid for \
       OMZ::plugins/kubectl/kubectl.plugin.zsh
-zinit wait"1" lucid light-mode for \
-  from"gh-r" as"program" mv"*/cache_builder -> cache_builder" pick"cache_builder" \
-  atload"(pgrep cache_builder >/dev/null || nohup cache_builder </dev/null >/dev/null 2>&1 &)" \
-     @bonnefoa/kubectl-fzf \
-  atload"export KUBECTL_FZF_OPTIONS=(--height 100%); zicdreplay" \
-     @bonnefoa/kubectl-fzf
+# disabled because it might break path completion
+#zinit wait"1" lucid light-mode for \
+#  from"gh-r" as"program" mv"*/cache_builder -> cache_builder" pick"cache_builder" \
+#  atload"(pgrep cache_builder >/dev/null || nohup cache_builder </dev/null >/dev/null 2>&1 &)" \
+#     @bonnefoa/kubectl-fzf \
+#  atload"export KUBECTL_FZF_OPTIONS=(--height 100%); zicdreplay" \
+#     @bonnefoa/kubectl-fzf
