@@ -1,5 +1,5 @@
 # PATH
-export PATH=$HOME/.bin:/usr/local/bin:$PATH
+export PATH=$PATH:$HOME/.bin:/usr/local/bin
 
 # encode
 export LANG=ja_JP.UTF-8
