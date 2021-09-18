@@ -3,20 +3,30 @@ alias subl='reattach-to-user-namespace subl'
 
 # git
 function ghq::jump(){
-    ghq_root=$(ghq root)
-    repo=$(ghq list | fzf)
+    local ghq_root=$(ghq root)
+    local repo=$(ghq list | fzf)
     if [ -n "$repo" ]; then
         cd "$ghq_root/$repo"
     fi
 }
 function ghq::browse(){
-    repo_dir=$(ghq list | fzf)
+    local repo_dir=$(ghq list | fzf)
     if [ -z "$repo_dir" ]; then
         return 1;
     fi
-    github_host=$(echo ${repo_dir}| cut -d "/" -f 1)
-    repo=$(echo ${repo_dir}| cut -d "/" -f 2,3)
+    local github_host=$(echo ${repo_dir}| cut -d "/" -f 1)
+    local repo=$(echo ${repo_dir}| cut -d "/" -f 2,3)
     GITHUB_HOST=${github_host} hub browse ${repo}
+}
+function git::pull(){
+    local branch="$(git branch --show-current)"
+    git pull origin "$branch"
+}
+function git::backup(){
+    git::pull
+    git add -A
+    git commit -m "__backup__"
+    git push origin HEAD
 }
 alias g='ghq::jump'
 alias gh='ghq::browse'
@@ -29,10 +39,10 @@ alias peco='fzf'
 
 # get paths quickly
 function expand_path() {
-    cur_dir=$(ls -U -d "$(pwd)"/* 2>/dev/null | head -n 100)
-    parent_dir=$(ls -U -d "$(dirname $(pwd))"/* 2>/dev/null | head -n 100)
-    ghq_dir=$(ghq list -p)
-    ecd_dir=$(cat $ENHANCD_DIR/enhancd.log)
+    local cur_dir=$(ls -U -d "$(pwd)"/* 2>/dev/null | head -n 100)
+    local parent_dir=$(ls -U -d "$(dirname $(pwd))"/* 2>/dev/null | head -n 100)
+    local ghq_dir=$(ghq list -p)
+    local ecd_dir=$(cat $ENHANCD_DIR/enhancd.log)
     BUFFER=${LBUFFER}$(echo "${cur_dir}\n${parent_dir}\n${ghq_dir}\n${ecd_dir}"| fzf)${RBUFFER}
 }
 zle -N expand_path
@@ -43,8 +53,8 @@ alias m2c="pbpaste |md2conflu |pbcopy"
 
 # programming-contest
 function programming-contest::jump(){
-    root=$(ghq root)/github.com/nemupm/programming-contest/codes
-    contest=$(ls $root| fzf)
+    local root=$(ghq root)/github.com/nemupm/programming-contest/codes
+    local contest=$(ls $root| fzf)
     if [ -n "$contest" ]; then
         cd "$root/$contest"
     fi
