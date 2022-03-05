@@ -1,7 +1,7 @@
 # check environment and install zinit
 __zsh::zinit::install()
 {
-    git clone https://github.com/zdharma/zinit $ZINIT_HOME
+    git clone https://github.com/zdharma-continuum/zinit $ZINIT_HOME
     chmod -R 755 $ZINIT_HOME
 }
 
@@ -35,7 +35,7 @@ autoload -Uz _zinit
 zinit wait lucid light-mode for \
       b4b4r07/enhancd \
   atinit"zicompinit; zicdreplay" \
-      zdharma/fast-syntax-highlighting \
+      zdharma-continuum/fast-syntax-highlighting \
   atload"_zsh_autosuggest_start;"\
 "export ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=(end-of-line vi-end-of-line vi-add-eol);"\
 "export ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS=(forward-char vi-forward-char "\
@@ -49,7 +49,7 @@ zinit wait lucid light-mode for \
 # history search
 zstyle ":history-search-multi-word" page-size "30"
 zinit ice wait"1" lucid
-zinit load zdharma/history-search-multi-word
+zinit load zdharma-continuum/history-search-multi-word
 
 # snippet
 zinit is-snippet for \

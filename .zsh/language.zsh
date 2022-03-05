@@ -7,7 +7,7 @@ zinit ice wait lucid as"program" pick"$HOME/.sdkman/bin/sdk" id-as'sdkman' run-a
     atclone"wget https://get.sdkman.io/?rcupdate=false -O $HOME/.sdkman/scr.sh; bash $HOME/.sdkman/scr.sh" \
     atpull"sdk selfupdate" \
     atinit"source $HOME/.sdkman/bin/sdkman-init.sh"
-zinit light zdharma/null
+zinit light zdharma-continuum/null
 
 # nvm
 export NVM_DIR="$HOME/.nvm"
@@ -15,7 +15,7 @@ if [ -s "$NVM_DIR/nvm.sh" ]; then
   zinit ice wait lucid \
       atclone"" \
       atinit'source "$NVM_DIR/nvm.sh"'
-  zinit light zdharma/null
+  zinit light zdharma-continuum/null
 fi
 
 # rbenv
@@ -24,7 +24,7 @@ if which rbenv > /dev/null; then
   zinit ice wait lucid \
       atclone"" \
       atinit'eval "$(rbenv init -)"'
-  zinit light zdharma/null
+  zinit light zdharma-continuum/null
 fi
 
 # pyenv
@@ -40,7 +40,7 @@ if [[ -s "$HOME/.gvm/scripts/gvm" ]]; then
   zinit ice wait lucid \
       atclone"" \
       atinit'source "$HOME/.gvm/scripts/gvm"'
-  zinit light zdharma/null
+  zinit light zdharma-continuum/null
 fi
 
 # direnv
