@@ -45,7 +45,7 @@ zinit wait lucid light-mode for \
   blockf atpull'zinit creinstall -q .' \
       zsh-users/zsh-completions \
   from"gh-r" as"program" atinit"export FZF_DEFAULT_OPTS='--height 40% --layout=reverse'" \
-      junegunn/fzf-bin
+      junegunn/fzf
 # history search
 zstyle ":history-search-multi-word" page-size "30"
 zinit ice wait"1" lucid
