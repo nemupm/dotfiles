@@ -30,7 +30,7 @@ fi
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
-zinit ice wait lucid atclone'$HOME/.pyenv/libexec/pyenv init - > zpyenv.zsh' \
+zinit ice wait lucid atclone'$HOME/.pyenv/libexec/pyenv init --path > zpyenv.zsh; $HOME/.pyenv/libexec/pyenv init - >> zpyenv.zsh' \
     atinit'eval "$(pyenv virtualenv-init -)"' atpull"%atclone" \
     as'command' pick'bin/pyenv' src"zpyenv.zsh" nocompile'!'
 zinit light pyenv/pyenv
