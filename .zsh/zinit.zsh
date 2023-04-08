@@ -67,3 +67,7 @@ zinit wait lucid for \
 #     @bonnefoa/kubectl-fzf \
 #  atload"export KUBECTL_FZF_OPTIONS=(--height 100%); zicdreplay" \
 #     @bonnefoa/kubectl-fzf
+
+# direnv
+zinit ice wait lucid from"gh-r" as"program" mv"direnv* -> direnv"
+zinit light direnv/direnv
