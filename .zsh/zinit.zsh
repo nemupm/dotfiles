@@ -33,6 +33,7 @@ autoload -Uz _zinit
 
 # plugins
 zinit wait lucid light-mode for \
+      Aloxaf/fzf-tab \
       b4b4r07/enhancd \
   atinit"zicompinit; zicdreplay" \
       zdharma-continuum/fast-syntax-highlighting \
