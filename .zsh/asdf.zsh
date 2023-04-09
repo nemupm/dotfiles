@@ -5,7 +5,7 @@ fpath=(${ASDF_DIR}/completions $fpath)
 autoload -Uz compinit && compinit
 
 function asdf::install(){
-  local plugins=$(cat $HOME/.tool-versions| awk '{print $1}')
+  local plugins=($(cat $HOME/.tool-versions| awk '{print $1}'))
   for plugin in ${plugins[@]}; do
     asdf plugin add ${plugin}
   done
