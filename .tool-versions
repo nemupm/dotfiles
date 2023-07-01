@@ -4,3 +4,4 @@ ruby 3.2.2
 nodejs 18.15.0
 java temurin-17.0.6+10
 terraform 1.4.4
+rust 1.70.0
