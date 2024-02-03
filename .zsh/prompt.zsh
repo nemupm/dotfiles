@@ -1,3 +1,5 @@
+if [[ $TERM_PROGRAM != "WarpTerminal" ]]; then
+
 # prompt
 zinit ice svn silent
 zinit snippet PZT::modules/prompt
@@ -36,3 +38,5 @@ function zle-keymap-select zle-line-init zle-line-finish
 zle -N zle-line-init
 zle -N zle-line-finish
 zle -N zle-keymap-select
+
+fi
